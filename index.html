@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SAIRAM GRADE CALCULATOR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            background: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        h2 {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>SAIRAM GRADE CALCULATOR</h2>
+        <input type="number" id="ese" placeholder="Enter ESE Score">
+        <input type="number" id="cat1" placeholder="Enter CAT 1 Score">
+        <input type="number" id="cat2" placeholder="Enter CAT 2 Score">
+        <input type="number" id="cat3" placeholder="Enter CAT 3 Score">
+        <input type="number" id="sail" placeholder="Enter SAIL Score">
+        <input type="number" id="assignment" placeholder="Enter Assignment Score">
+        <button onclick="calculateTotal()">Calculate</button>
+        <h2 id="result"></h2>
+    </div>
+
+    <script>
+        function calculateTotal() {
+            let ese = parseFloat(document.getElementById("ese").value) || 0;
+            let cat1 = parseFloat(document.getElementById("cat1").value) || 0;
+            let cat2 = parseFloat(document.getElementById("cat2").value) || 0;
+            let cat3 = parseFloat(document.getElementById("cat3").value) || 0;
+            let sail = parseFloat(document.getElementById("sail").value) || 0;
+            let assignment = parseFloat(document.getElementById("assignment").value) || 0;
+
+            let maxTwo = [cat1, cat2, cat3].sort((a, b) => b - a).slice(0, 2);
+            let avgMaxTwo = (maxTwo[0] + maxTwo[1]) / 2;
+
+            let total = (0.6 * ese) + (0.2 * avgMaxTwo) + (0.1 * sail) + (0.1 * assignment);
+            
+            document.getElementById("result").innerText = "Total: " + total.toFixed(2);
+        }
+    </script>
+</body>
+</html>
